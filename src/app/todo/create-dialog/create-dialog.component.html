@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-8">
+        <h4 class="display-4 fw-bold">Create new task</h4>
+    </div>
+    <div class="col-4 text-end"><button (click)="onNoClick()" class="btn btn-danger btn-sm px-2">&times;</button></div>
+</div>
+<form [formGroup]="taskForm" (ngSubmit)="saveTask()">
+    <div class="form-group">
+        <mat-form-field appearance="legacy">
+            <mat-label>Task name</mat-label>
+            <input matInput id="Name" name="Name" formControlName="Name" placeholder="Task name" required>
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field appearance="fill">
+            <mat-label>Deadline</mat-label>
+            <input matInput id="doneOn" name="doneOn" formControlName="doneOn" type="datetime-local">
+        </mat-form-field>
+    </div>
+    <div class="form-group">
+        <button type="submit" disabled *ngIf="taskForm.invalid" class="btn btn-success">Add</button>
+        <button type="submit" *ngIf="taskForm.valid" class="btn btn-success">Add</button>
+    </div>
+</form>

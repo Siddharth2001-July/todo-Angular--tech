@@ -1,0 +1,31 @@
+<h1 class="display-1">{{title}}</h1>
+<button class="btn btn-success my-3" (click)="openDialog()">Create new task</button>
+<div class="mb-5 shadow-lg rounded bg-body">
+    <table class="table table-hover">
+        <thead>
+            <tr class="fw-bold bg-dark" style="color: white;">
+                <td scope="col">Task</td>
+                <td scope="col">Completed</td>
+                <td scope="col">Complete by</td>
+                <td scope="col">Edit</td>
+                <td scope="col">Remove</td>
+            </tr>
+        </thead>
+        <tbody *ngIf='tasks.length'>
+            <tr class="fw-bolder" *ngFor='let task of tasks'>
+                <td>{{task.name}}</td>
+                <td *ngIf="task.isCompleted"><input class="form-check-input p-3" (change)="taskCompleted(task)"
+                        type="checkbox" checked></td>
+                <td *ngIf="!task.isCompleted"><input class="form-check-input p-3" (change)="taskCompleted(task)"
+                        type="checkbox"></td>
+                <td>{{task.doneOn | date:'short'}}</td>
+                <td><button class="btn btn-info" (click)="openEdit(task)">Edit</button></td>
+                <td><button (click)="removeTask(task)" class="btn btn-danger py-1">&times;</button></td>
+            </tr>
+        </tbody>
+        <tbody *ngIf='!tasks.length'>
+            Create tasks to view
+        </tbody>
+    </table>
+</div>
+<div class="text-center mt-5"><a href="">Copyright 2023</a></div>
